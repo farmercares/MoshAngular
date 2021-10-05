@@ -1,0 +1,10 @@
+<button type="button" 
+    class="btn"
+    [class.btn-primary]="isActive"
+    [class.btn-secondary]="!isActive"
+    (click)="onClick()"
+>
+    Button
+  </button>
+
+  <span>{{ likesCount }}</span>
