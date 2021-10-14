@@ -8,14 +8,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 })
 export class NewCourseFormComponentComponent {
 
-  form = new FormGroup({
-    name: new FormControl(),
-    contact: new FormGroup({
-      email: new FormControl(),
-      phone: new FormControl()
-    }),
-    topics: new FormArray([])
-  });
+  form;
 
   constructor(fb: FormBuilder) {
     this.form = fb.group({
