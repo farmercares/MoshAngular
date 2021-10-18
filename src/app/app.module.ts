@@ -1,3 +1,4 @@
+import { PostsComponent } from './posts/posts.component';
 import { CoursesService } from './courses.service';
 import { CoursesComponent } from './courses.component';
 import { NgModule } from '@angular/core';
@@ -18,7 +19,6 @@ import { ContactFormComponent } from './contact-form/contact-form.component';
 import { SignupFormComponent } from './signup-form/signup-form.component';
 import { NewCourseFormComponentComponent } from './new-course-form-component/new-course-form-component.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
-import { PostsComponentComponent } from './posts-component/posts-component.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +34,7 @@ import { PostsComponentComponent } from './posts-component/posts-component.compo
     ContactFormComponent,
     NewCourseFormComponentComponent,
     ChangePasswordComponent,
-    PostsComponentComponent
+    PostsComponent
   ],
   imports: [
     BrowserModule,
