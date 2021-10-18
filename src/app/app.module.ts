@@ -19,6 +19,7 @@ import { ContactFormComponent } from './contact-form/contact-form.component';
 import { SignupFormComponent } from './signup-form/signup-form.component';
 import { NewCourseFormComponentComponent } from './new-course-form-component/new-course-form-component.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { PostService } from './services/post.service';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
   ],
   providers: [
     CoursesService,
-    AuthorsService
+    AuthorsService,
+    PostService
   ],
   bootstrap: [AppComponent]
 })

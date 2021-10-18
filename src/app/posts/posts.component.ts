@@ -1,5 +1,5 @@
+import { PostService } from './../services/post.service';
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 
 interface BlogPost {
   id: number;
@@ -15,9 +15,8 @@ interface BlogPost {
 export class PostsComponent implements OnInit {
 
   posts: any[] = [];
-  private url = 'http://jsonplaceholder.typicode.com/posts';
 
-  constructor(private http: HttpClient){
+  constructor(private service: PostService){
     
   }
 
@@ -25,8 +24,7 @@ export class PostsComponent implements OnInit {
     let post:any = {title: input.value};
     input.value = "";
 
-    this.http
-    .post(this.url,post)
+    this.service.createPost(input)
     .subscribe(response => {
       post['id'] = (response as BlogPost).id ;
       this.posts.splice(0,0,response);
@@ -34,17 +32,18 @@ export class PostsComponent implements OnInit {
   }
 
   updatePost(post: any){
-    this.http.patch(this.url + '/' + post.id, JSON.stringify({isRead: true}))
+    this.service.updatePost(post)
     .subscribe(response =>{
       console.log(response);
     })
   }
 
   ngOnInit(){
-    this.http
-    .get<any[]>(this.url)
+    this.service.getPosts()
     .subscribe((response)=>{
       this.posts = response;
+    }, error =>{
+      alert('Something bad happened!')
     });
   }
 
