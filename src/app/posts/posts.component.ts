@@ -12,17 +12,13 @@ interface BlogPost {
   styleUrls: ['./posts.component.css']
 })
 
-export class PostsComponent {
+export class PostsComponent implements OnInit {
 
   posts: any[] = [];
   private url = 'http://jsonplaceholder.typicode.com/posts';
 
   constructor(private http: HttpClient){
-    this.http
-    .get<any[]>(this.url)
-    .subscribe((response)=>{
-      this.posts = response;
-    });
+    
   }
 
   createPost(input: HTMLInputElement){
@@ -42,6 +38,14 @@ export class PostsComponent {
     .subscribe(response =>{
       console.log(response);
     })
+  }
+
+  ngOnInit(){
+    this.http
+    .get<any[]>(this.url)
+    .subscribe((response)=>{
+      this.posts = response;
+    });
   }
 
 }
