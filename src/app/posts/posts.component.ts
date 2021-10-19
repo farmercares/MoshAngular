@@ -30,7 +30,10 @@ export class PostsComponent implements OnInit {
         post['id'] = (response as BlogPost).id ;
         this.posts.splice(0,0,response);
     }, 
-      error =>{
+      (error: Response) =>{
+        if (error.status === 400)
+          console.log('Heyyyy that doesn\'t work man!')
+        else 
         alert('Something bad happened!')
     })
   }

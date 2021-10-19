@@ -1,5 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import 'rxjs/add/operator/catch';
+
+import { map, retry, catchError } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
 
 interface BlogPost {
   id: number;
@@ -28,6 +32,15 @@ export class PostService {
 
   getPosts() {
     return this.http.get<any[]>(this.url);
+  }
+
+  deletePost(id: number){
+    return this.http.delete(this.url + '/' + id)
+      .pipe(catchError( (error: Response) => {
+        if (error.status === 404)
+          return Observable.throw(new NotFoundError());
+          return Observable.throw(new AppError(error));
+        }));
   }
 
 }
